@@ -1,0 +1,31 @@
+services:
+  gaussian_splatting:
+    container_name: gaussian_splatting_container
+    build:
+      dockerfile: Dockerfile
+      args:
+        - USERNAME=${USER:-user}
+        - UID=${UID:-1007}
+        - GID=${GID:-1007}
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    runtime: nvidia
+    network_mode: "host"
+    tty: true
+    volumes:
+        # - /home/haedamoh/logs/:/home/docker_dev/logs/
+        - /home/haedamoh/git/gaussian-splatting/:/home/docker_dev/gaussian-splatting/
+        - /home/haedamoh/.netrc:/home/docker_dev/.netrc
+        - /home/haedamoh/.git:/home/docker_dev/.git
+        - /home/shared/:/home/shared/ 
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+
+    # command: python /home/docker_dev/silvr/train.py
+    

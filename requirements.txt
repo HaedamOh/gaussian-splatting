@@ -1,0 +1,17 @@
+plyfile==0.8.1
+# python==3.7.13
+pip==22.3.1
+# torch==1.12.1
+# torchaudio==0.12.1
+# torchvision==0.13.1
+torch-scatter
+tqdm
+einops
+wandb
+lpips
+laspy
+glim
+ninja
+opencv-python
+numpy==1.24.1
+tensorboard
